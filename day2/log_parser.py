@@ -43,8 +43,9 @@ def time_between_shutdowns(loglines):
     last_time = ""
     for line in loglines:
         line = line.strip()
-        if line.endswith("Shutdown complete."):
+        if line.endswith("Shutdown initiated."):  # we only want shutdown initiated events
             timestamp = convert_to_datetime(line)
+            # Since I need to check the first and last shutdowns,
             if not first_time:
                 first_time = timestamp
             last_time = timestamp
