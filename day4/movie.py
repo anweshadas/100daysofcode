@@ -47,6 +47,8 @@ def read_data(filename):
             results[row['director_name']].append(m)
             line_count += 1
         return results
+
+ 
     
 if __name__ == "__main__":
     results = main()
