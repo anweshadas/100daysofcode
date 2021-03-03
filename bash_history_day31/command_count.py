@@ -2,14 +2,19 @@
 
 import os
 from collections import Counter
+import argparse
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--top",type =int, default=5)
+    args = parser.parse_args()
     filename = get_filename()
     data = get_data(filename)
     command_counts = count_commands(data)
-    print(command_counts)
-    most_common_commands = Counter(data).most_common(10)
-    print(most_common_commands)
+    #print(command_counts)
+    most_common_commands = Counter(data).most_common(args.top)
+    for t in most_common_commands:
+        print(f"{t[0]} = {t[1]}")
 
 
 def get_filename():
@@ -31,6 +36,7 @@ def count_commands(data):
     for com in data:
         cnt[com] += 1
     return cnt
+
 
 if __name__ == "__main__":
     main()
