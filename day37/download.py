@@ -7,7 +7,7 @@ import httpx
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input", help="input filepath",
-                    type=str)
+                    type=str, required=True)
 args = parser.parse_args()
 
 filename = args.input
