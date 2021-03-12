@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 
+# r = anything other than 200 is error
+# wrong input filepath 
+# wrong output directory - 
+
 import os 
 import argparse
 import httpx
+import sys
 
 
 def main():
@@ -15,6 +20,9 @@ def main():
     args = parser.parse_args()
 
     filename = args.input
+    if not os.path.exists(filename):
+        print("The input file does not exist. Enter a file as input that exists.")
+        sys.exit(-1)
     if args.output:
         directory = args.output
     else:
