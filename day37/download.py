@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 
-import os 
+import os
 import argparse
 import httpx
 import sys
@@ -9,11 +9,9 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input", help="input filepath",
-                        type=str, required=True)
-    parser.add_argument("--output", help="output directory",
-                        type=str)                        
-    
+    parser.add_argument("--input", help="input filepath", type=str, required=True)
+    parser.add_argument("--output", help="output directory", type=str)
+
     args = parser.parse_args()
 
     filename = args.input
@@ -23,8 +21,10 @@ def main():
     if args.output:
         directory = args.output
         if not os.path.exists(directory):
-            print("The output directory does not exists. Enter a directory as output that exists.")
-        
+            print(
+                "The output directory does not exists. Enter a directory as output that exists."
+            )
+
     else:
         directory = "./"
 
@@ -37,15 +37,14 @@ def main():
                 continue
 
             fname = url.split("/")[-1]
-            fname = os.path.join(directory,fname)
+            fname = os.path.join(directory, fname)
             print(f"Downloading {fname}")
             try:
-                with open(fname,"wb") as fobj:
+                with open(fname, "wb") as fobj:
                     fobj.write(r.read())
             except PermissionError:
                 print("Can not write to the output director. Permission Error")
                 sys.exit()
-
 
 
 if __name__ == "__main__":
